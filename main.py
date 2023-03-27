@@ -19,7 +19,7 @@ def hungarian_algorithm(cost_matrix):
     return row_ind, col_ind, total_cost,
 
 st.title("The Hungarian Algorithm")
-st.subheader(" for to solving Assignment Problem")
+st.subheader(" for  solving Assignment Problem")
 st.text("CE4") 
 st.markdown("https://delaeyram.com")
 col1,col2 = st.columns(2)
