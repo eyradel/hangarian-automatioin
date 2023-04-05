@@ -77,28 +77,28 @@ with col2:
                 df = pd.DataFrame({ "Worker":[row_ind[i]+1],"Cost": [int(matrix[row_ind[i]][col_ind[i]])], "Job": [col_ind[i]+1],})
                 st.table(df)
                 st.write(f"Worker {row_ind[i]+1} is assigned to Job {col_ind[i]+1} (Cost: {int(matrix[row_ind[i]][col_ind[i]])})")
-            st.markdown('<p class="text-secondary">Minimized Cost :</p>', unsafe_allow_html=True)
+            st.markdown('<p class="text-secondary">Optimal Cost :</p>', unsafe_allow_html=True)
             st.metric(f"",total_cost)
             data = []
-    labels = [f"Worker {i+1}" for i in range(matrix_size)] + [f"Job {j+1}" for j in range(matrix_size)]
-    for i in range(matrix_size):
-        for j in range(matrix_size):
-            data.append([i, matrix_size+j, matrix[i][j]])
-    fig = go.Figure(data=[go.Sankey(
-        node=dict(
-          pad=15,
-          thickness=20,
-          line=dict(color="black", width=0.5),
-          label=labels,
-          color="blue"
-        ),
-        link=dict(
-          source=[data[i][0] for i in range(len(data))],
-          target=[data[i][1] for i in range(len(data))],
-          value=[data[i][2] for i in range(len(data))],
-        ))])
-    fig.update_layout(title_text="Visualization")
-    st.plotly_chart(fig)
+            labels = [f"Worker {i+1}" for i in range(matrix_size)] + [f"Job {j+1}" for j in range(matrix_size)]
+            for i in range(matrix_size):
+                for j in range(matrix_size):
+                    data.append([i, matrix_size+j, matrix[i][j]])
+            fig = go.Figure(data=[go.Sankey(
+                node=dict(
+                pad=15,
+                thickness=20,
+                line=dict(color="black", width=0.5),
+                label=labels,
+                color="blue"
+                ),
+                link=dict(
+                source=[data[i][0] for i in range(len(data))],
+                target=[data[i][1] for i in range(len(data))],
+                value=[data[i][2] for i in range(len(data))],
+                ))])
+            fig.update_layout(title_text="Visualization")
+            st.plotly_chart(fig)
 
 st.markdown("""
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
